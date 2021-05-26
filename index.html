@@ -4,16 +4,51 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NYT</title>
+    <title>New York Times - Articles</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet"> 
   </head>
 
   <body>
-    <h3>Latest Headlines</h3>
-    
-    <div id="headlines"></div>
 
-    <script src="sketch.js"></script>
+    <header>
+      <div id="logo-wrapper">
+        <a href="https://www.nytimes.com/" target="_blank">
+          <img src="assets/logo/640px-NewYorkTimes.svg.png" alt="NYT logo" id="nyt-logo">
+        </a>
+      </div>
+
+
+      <div id="searchWrapper">
+        <input
+          type="text"
+          name="searchBar"
+          id="searchBar"
+          placeholder="Search for News">
+      </div>
+    </header>
+
+    <main>
+      <div id="featured-dashboard">
+        <div id="featured-wrapper" class="grid-centered-layout">
+          <div id="topApi"></div>
+        </div>
+      </div>
+
+      <div id="recent-dashboard">
+        <div id="recentApi" class="grid-centered-layout"></div>
+      </div>
+      
+
+      </div>
+
+      <div id="searchApi" style="display: none;"></div>
+      <script src="sketch.js"></script>
+  </main>
   </body>
+  <footer>
+    <p>Made by <a href="https://github.com/thiagocruztc"><b>Thiago Cruz</b></a>, using New York Times APIs </p>
+  </footer>
 </html>
