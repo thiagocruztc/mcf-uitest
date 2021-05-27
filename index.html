@@ -20,13 +20,19 @@
         </a>
       </div>
 
+      <button onclick="searchString()" type="button" id="searchBtn">Search</button>
+
+      <button onclick="searchDef()" type="button" id="searchBtn">Print</button>
+
 
       <div id="searchWrapper">
         <input
+          onkeyup="searchString()"
           type="text"
           name="searchBar"
           id="searchBar"
-          placeholder="Search for News">
+          placeholder="Search for News"
+          value="books">
       </div>
     </header>
 
@@ -38,14 +44,14 @@
       </div>
 
       <div id="recent-dashboard">
-        <div id="recentApi" class="grid-centered-layout"></div>
+        <div id="recentApi" class="grid-centered-layout"  style="display: none;"></div>
       </div>
       
 
       </div>
 
-      <div id="searchApi" style="display: none;"></div>
-      <script src="sketch.js"></script>
+      <div id="searchApi" class="grid-centered-layout"></div>
+        <script src="sketch.js"></script>
   </main>
   </body>
   <footer>

@@ -1,54 +1,61 @@
 // Search API //
 
-let searchUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=books&api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo';
+// let searchUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=books&api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo'
 
-let searchApi = document.getElementById("searchApi");
+var searchUrl;
 
-fetch(searchUrl)
-.then(response => response.json())
-.then(searchData => {
-  console.log(searchData);
-  searchData.response.docs.map(searchArticle => {
+function searchString() {
+  var str = document.getElementById("searchBar").value;
+  searchUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + str + '&api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo';
 
-        console.log(searchArticle.title); 
+  let searchApi = document.getElementById("searchApi");
 
-        let searchContainer = document.createElement ("div");
-        searchContainer.setAttribute('class', "headline-container");
+  fetch(searchUrl)
+  .then(response => response.json())
+  .then(searchData => {
+    console.log(searchData);
+    searchData.response.docs.slice(0,9).map(searchArticle => {
 
-        let searchA = document.createElement ("a");
-        searchA.setAttribute('href', searchArticle.web_url);
-        searchA.innerHTML = searchArticle.headline.main;
-        searchA.setAttribute('class', "headline-title")
-        
-        let searchP = document.createElement ("p");
-        searchP.innerHTML = searchArticle.abstract;
-        searchP.setAttribute('class', "headline-snippet")
+          console.log(searchArticle.title); 
 
-        let searchImg = document.createElement ("img");
-        searchImg.setAttribute('src', 'https://nytimes.com/' + searchArticle.multimedia[0].url);
-        searchImg.setAttribute('class', "headline-img");
+          let searchContainer = document.createElement ("div");
+          searchContainer.setAttribute('class', "headline-container");
 
-        searchApi.append(searchContainer);
-        searchContainer.append(searchImg);
-        searchContainer.appendChild(searchA);
-        searchContainer.appendChild(searchP);
+          let searchA = document.createElement ("a");
+          searchA.setAttribute('href', searchArticle.web_url);
+          searchA.innerHTML = searchArticle.headline.main;
+          searchA.setAttribute('class', "headline-title")
+          
+          let searchP = document.createElement ("p");
+          searchP.innerHTML = searchArticle.abstract;
+          searchP.setAttribute('class', "headline-snippet")
+
+          let searchImg = document.createElement ("img");
+          searchImg.setAttribute('src', 'https://nytimes.com/' + searchArticle.multimedia[0].url);
+          searchImg.setAttribute('class', "headline-img");
+
+          searchApi.append(searchContainer);
+          searchContainer.append(searchImg);
+          searchContainer.appendChild(searchA);
+          searchContainer.appendChild(searchP);
 
   })
 })
+}
 
-/* // Search Bar //
-const searchBar = document.getElementById('searchBar');
-console.log(searchBar);
-let SearchArticle = [];
+function searchDef(){
+  console.log(searchUrl) 
+}
 
-searchBar.addEventListener('keyup', (e) => {
-  const searchString = e.target.value;
-  const filteredCharacters = SearchArticle.filter( SearchArticle => {
-      return SearchArticle.headline.main.includes(searchString) || SearchArticle.abstract.includes(searchString)
-  });
-  console.log(filteredCharacters);
-})
- */
+
+
+/* const searchBar = document.getElementById('searchBar');
+
+  searchBar.addEventListener('input', (event) => {
+    console.log(event.target.value);
+    }
+) */
+
 
 // Top Stories API //
 
@@ -90,7 +97,7 @@ topData.results.slice(0,3).map(topArticle => {
 
 // Real-Time Feed  API //
 
-let recentUrl = 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo&offset=20'
+let recentUrl = 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo&offset=50'
 
 let recentApi = document.getElementById("recentApi");
 
