@@ -7,8 +7,13 @@
     <title>New York Times - Articles</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet"> 
+    
   </head>
 
   <body>
@@ -16,45 +21,48 @@
     <header>
       <div id="logo-wrapper">
         <a href="https://www.nytimes.com/" target="_blank">
-          <img src="assets/logo/640px-NewYorkTimes.svg.png" alt="NYT logo" id="nyt-logo">
+          <img src="assets/logo/640px-NewYorkTimes.svg.png" alt="NYT logo">
         </a>
       </div>
 
-      <button onclick="searchString()" type="button" id="searchBtn">Search</button>
+      <button onclick="searchDef()" type="button" id="searchBtn" style="display: none;">Print</button>
 
-      <button onclick="searchDef()" type="button" id="searchBtn">Print</button>
-
-
-      <div id="searchWrapper">
-        <input
-          onkeyup="searchString()"
-          type="text"
-          name="searchBar"
-          id="searchBar"
-          placeholder="Search for News"
-          value="books">
-      </div>
     </header>
 
     <main>
-      <div id="featured-dashboard">
+    
+      <section id="featured-dashboard">
         <div id="featured-wrapper" class="grid-centered-layout">
+          <h1 >Featured Articles</h1>
           <div id="topApi"></div>
         </div>
-      </div>
+      </section>
 
-      <div id="recent-dashboard">
-        <div id="recentApi" class="grid-centered-layout"  style="display: none;"></div>
-      </div>
+      <section id="recent-dashboard" style="display: none;">
+        <div id="recentApi" class="grid-centered-layout"></div>
+      </section>
       
+      <section id="search-dashboard">
+        <div id="search-wrapper" class="grid-centered-layout">
 
-      </div>
+          <div id="searchBarWrapper">
+            <input
+              type="text"
+              name="searchBar"
+              id="searchBar"
+              placeholder="Search for News"
+              value="usa">
+            <button onclick="searchString()" type="button" id="searchBtn"><span class="material-icons md-36">search</span></button>
+          </div>
 
-      <div id="searchApi" class="grid-centered-layout"></div>
+          <div id="searchApi"></div>
+        </div>
+      </section>
+
         <script src="sketch.js"></script>
-  </main>
+    </main>
   </body>
   <footer>
-    <p>Made by <a href="https://github.com/thiagocruztc"><b>Thiago Cruz</b></a>, using New York Times APIs </p>
+    <p>Made with The New York Times' APIs </p>
   </footer>
 </html>

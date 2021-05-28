@@ -1,22 +1,32 @@
 // Search API //
 
-// let searchUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=books&api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo'
+searchString();
 
 var searchUrl;
 
 function searchString() {
   var str = document.getElementById("searchBar").value;
+  if (str && str.trim().length > 0){
+      str = str.trim().toLowerCase();
+  }
+  else {
+    clearSearch(searchApi);
+  }
+  
   searchUrl = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + str + '&api-key=nORWAA7PeGfF1KNvEhtngpvB4wgRZMZo';
 
   let searchApi = document.getElementById("searchApi");
+
+  document.getElementById("searchBar").setAttribute("value", "")
+  clearSearch(searchApi); 
 
   fetch(searchUrl)
   .then(response => response.json())
   .then(searchData => {
     console.log(searchData);
     searchData.response.docs.slice(0,9).map(searchArticle => {
-
-          console.log(searchArticle.title); 
+ 
+        console.log(searchArticle.title); 
 
           let searchContainer = document.createElement ("div");
           searchContainer.setAttribute('class', "headline-container");
@@ -43,19 +53,16 @@ function searchString() {
 })
 }
 
+function clearSearch(removeElement) {
+  while (removeElement.firstChild) {
+    removeElement.removeChild(removeElement.firstChild)
+  } 
+
+}
+
 function searchDef(){
   console.log(searchUrl) 
 }
-
-
-
-/* const searchBar = document.getElementById('searchBar');
-
-  searchBar.addEventListener('input', (event) => {
-    console.log(event.target.value);
-    }
-) */
-
 
 // Top Stories API //
 
@@ -80,9 +87,9 @@ topData.results.slice(0,3).map(topArticle => {
   topA.innerHTML = topArticle.title;
   topA.setAttribute('class', "headline-title");
   
-  let topP = document.createElement ("p");
+/*   let topP = document.createElement ("p");
   topP.innerHTML = topArticle.abstract;
-  topP.setAttribute('class', "headline-snippet")
+  topP.setAttribute('class', "headline-snippet") */
 
   let topImg = document.createElement ("img");
   topImg.setAttribute('src', topArticle.multimedia[0].url);
@@ -91,7 +98,8 @@ topData.results.slice(0,3).map(topArticle => {
   topApi.append(topContainer);
   topContainer.append(topImg);
   topContainer.append(topA);
-  topContainer.append(topP);
+/*   topContainer.append(topP); */
+
 })
 })
 
