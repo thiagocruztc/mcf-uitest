@@ -1,6 +1,10 @@
 // Search API //
 
+// Calling initial query //
+
 searchString();
+
+// Defining the search function //
 
 var searchUrl;
 
@@ -52,6 +56,18 @@ function searchString() {
   })
 })
 }
+
+//Triggering the function using the Enter key//
+
+var searchInput = document.getElementById("searchBar");
+searchInput.addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.key === 'Enter') {
+   searchString();
+  }
+});
+
+//Clear data of previous search function//
 
 function clearSearch(removeElement) {
   while (removeElement.firstChild) {
